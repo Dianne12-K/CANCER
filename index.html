@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>African Forests Story Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { display: flex; flex-direction: row; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        #map { height: 600px; width: 50%; margin-right: 20px; }
+        .story { width: 50%; }
+        .forest-section { margin-bottom: 40px; }
+        .forest-section img { max-width: 100%; height: auto; }
+        .forest-section h2 { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="map"></div>
+        <div class="story">
+            <h1>African Forests Story Map</h1>
+
+            <div class="forest-section">
+                <h2>1. West Africa - Ankasa Conservation Area, Ghana</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/Ankasa_Rainforest.JPG" alt="Ankasa Conservation Area">
+                <p>The Ankasa Conservation Area is a protected area in Ghana, known for its dense rainforest, rich biodiversity, and pristine environment. It is a crucial habitat for many rare and endangered species, including the forest elephant, bongo, and Diana monkey.</p>
+            </div>
+
+            <div class="forest-section">
+                <h2>2. Central Africa - Congo Rainforest, Democratic Republic of Congo</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Salonga_from_above.JPG" alt="Congo Rainforest">
+                <p>The Congo Rainforest is the second-largest tropical rainforest in the world, playing a critical role in regulating the global climate. It is home to a vast array of wildlife, including gorillas, chimpanzees, and forest elephants, and supports the livelihoods of millions of people.</p>
+            </div>
+
+            <div class="forest-section">
+                <h2>3. East Africa - Mau Forest, Kenya</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/13/Mau_Forest.jpg" alt="Mau Forest">
+                <p>Mau Forest is Kenya’s largest indigenous forest and a vital water catchment area for the country. It supports several rivers that flow into major lakes, including Lake Victoria. The forest is also home to a variety of wildlife, including leopards, elephants, and hundreds of bird species.</p>
+            </div>
+
+            <div class="forest-section">
+                <h2>4. Southern Africa - Knysna Forest, South Africa</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Knysna_forest_scenery.jpg" alt="Knysna Forest">
+                <p>The Knysna Forest is an ancient forest in South Africa, known for its rich biodiversity and towering trees. It has a mystical allure, often associated with the elusive Knysna elephants. The forest also supports a variety of plant and animal species, making it a crucial conservation area.</p>
+            </div>
+
+            <div class="forest-section">
+                <h2>5. North Africa - Middle Atlas Forest, Morocco</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Moroccan_Cedars_Middle_Atlas_Mountains.jpg" alt="Middle Atlas Forest">
+                <p>The Middle Atlas Forest in Morocco is characterized by its unique cedar forests. This region is crucial for maintaining local biodiversity and is the habitat for the endangered Barbary macaque. The forest is also important for the local communities who rely on its resources.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([0, 20], 3);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+        }).addTo(map);
+
+        var forests = [
+            {
+                name: "Ankasa Conservation Area, Ghana",
+                coords: [5.2203, -2.6007],
+                popup: "<b>Ankasa Conservation Area, Ghana</b><br>Known for its dense rainforest and rich biodiversity."
+            },
+            {
+                name: "Congo Rainforest, Democratic Republic of Congo",
+                coords: [-2.8797, 23.656],
+                popup: "<b>Congo Rainforest, DRC</b><br>The second-largest tropical rainforest in the world."
+            },
+            {
+                name: "Mau Forest, Kenya",
+                coords: [-0.4057, 35.7595],
+                popup: "<b>Mau Forest, Kenya</b><br>The largest indigenous forest in Kenya."
+            },
+            {
+                name: "Knysna Forest, South Africa",
+                coords: [-33.9308, 23.0936],
+                popup: "<b>Knysna Forest, South Africa</b><br>An ancient forest known for its rich biodiversity."
+            },
+            {
+                name: "Middle Atlas Forest, Morocco",
+                coords: [33.4242, -5.5000],
+                popup: "<b>Middle Atlas Forest, Morocco</b><br>Characterized by its unique cedar forests."
+            }
+        ];
+
+        forests.forEach(function(forest) {
+            L.marker(forest.coords).addTo(map)
+                .bindPopup(forest.popup);
+        });
+    </script>
+</body>
+</html>
